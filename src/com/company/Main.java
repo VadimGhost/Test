@@ -3,6 +3,7 @@ import javax.swing.*;
 import java.io.*;
 import static java.lang.Math.sqrt;
 
+
 public class Main
 {
 
@@ -42,19 +43,25 @@ public class Main
                     Double Line2 = SizeLength2(Coords);
                     Double Line3 = SizeLength3(Coords);
 
-                    if ((Line1==Line2)||(Line2==Line3)||(Line3==Line1))
+
+
+
+
+                    if ((Line1.equals(Line2))||(Line2.equals(Line3))||(Line3.equals(Line1)))
                     {
-                        System.out.println("Треугольник не является равноберенным на строке:"+K);
+                        Double s1 = TriangleSqure(Line1, Line2, Line3);
+                        System.out.println(s1);
                     }
                     else
                     {
-                       Double s1 = TriangleSqure(Line1, Line2, Line3);
+                        System.out.println("Треугольник не является равноберенным на строке:"+K);
                     }
 
                 }
               else
                 {
                     System.out.println(Coords[5]);
+                    System.out.println();
                 }
 
 
@@ -76,6 +83,7 @@ public class Main
         double x = a[0]-a[2];
         double y = a[1]-a[3];
         double LengthSide = sqrt(x*x+y*y);
+
         return LengthSide;
     }
     private static double SizeLength2 (int[] a)
