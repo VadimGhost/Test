@@ -50,7 +50,7 @@ public class Main
                             double s1 = TriangleSqure(Line1, Line2, Line3);
                             if (s1>MaxSquare)
                             {
-
+//запись максимальных значенний
                             }
 
                             System.out.println(s1);
