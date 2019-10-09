@@ -8,7 +8,7 @@ public class Main
 
     public static void main(String[] args)
     {
-
+        int K = 0;
         File file = new File("C:\\Users\\Zver\\Desktop\\Input_file.txt");
 
         try
@@ -21,7 +21,7 @@ public class Main
 
             while ((strLine = br.readLine()) != null)
             {
-              int K = 0;
+
               K++;
               System.out.println(strLine);
               String arr = strLine;
@@ -38,12 +38,19 @@ public class Main
 
               if(Coords.length == 6)
                 {
-                    Double Line1 = SizeLength(Coords[0], Coords[1], Coords[2], Coords[3]);
-                    Double Line2 = SizeLength(Coords[2], Coords[3], Coords[4], Coords[5]);
-                    Double Line3 = SizeLength(Coords[4], Coords[5], Coords[0], Coords[1]);
-                    System.out.println(Line1);
-                    System.out.println(Line2);
-                    System.out.println(Line3);
+                    Double Line1 = SizeLength1(Coords);
+                    Double Line2 = SizeLength2(Coords);
+                    Double Line3 = SizeLength3(Coords);
+
+                    if ((Line1==Line2)||(Line2==Line3)||(Line3==Line1))
+                    {
+                        System.out.println("Треугольник не является равноберенным на строке:"+K);
+                    }
+                    else
+                    {
+                       Double s1 = TriangleSqure(Line1, Line2, Line3);
+                    }
+
                 }
               else
                 {
@@ -64,12 +71,26 @@ public class Main
 
 
 
-    private static double SizeLength (int cord1, int cord2, int cord3, int cord4)
+    private static double SizeLength1 (int[] a)
     {
-        double x = cord1-cord3;
-        double y = cord2-cord4;
-        double LengthLine = sqrt(x*x+y*y);
-        return LengthLine;
+        double x = a[0]-a[2];
+        double y = a[1]-a[3];
+        double LengthSide = sqrt(x*x+y*y);
+        return LengthSide;
+    }
+    private static double SizeLength2 (int[] a)
+    {
+        double x = a[2]-a[4];
+        double y = a[3]-a[5];
+        double LengthSide = sqrt(x*x+y*y);
+        return LengthSide;
+    }
+    private static double SizeLength3 (int[] a)
+    {
+        double x = a[4]-a[0];
+        double y = a[5]-a[1];
+        double LengthSide = sqrt(x*x+y*y);
+        return LengthSide;
     }
 
     private static double TriangleSqure (double Length1, double Length2, double Length3)
