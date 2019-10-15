@@ -46,8 +46,8 @@ public class Main {
                             }
                         }
                     else {
-                        LogWriter.write("Треугольник не является равноберенным на строке:" + K);
-                        LogWriter.write(System.lineSeparator());
+                            LogWriter.write("Треугольник не является равноберенным на строке:" + K);
+                            LogWriter.write(System.lineSeparator());
                          }
                 }
                 else
