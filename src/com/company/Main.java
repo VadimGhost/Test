@@ -11,6 +11,7 @@ public class Main
     public static void main(String[] args)
     {
         int K = 0;
+        int ParseFlag;
         double MaxSquare = 0;
         int[] MaxCoords = new int[6];
         File file = new File("C:\\Users\\Zver\\Desktop\\Input_file.txt");
@@ -23,7 +24,8 @@ public class Main
             while ((strLine = br.readLine()) != null)
                 {
                   K++;
-                  System.out.println(strLine);                                                                          // считаем строку из файла
+                  ParseFlag=0;
+              //    System.out.println(K);                                                                          // считаем строку из файла
                   String arr = strLine;
                   String[] CoordsStr = arr.split(" ");                                                            // разделение строки по пробелу
                   int[] Coords = new int[CoordsStr.length];
@@ -34,13 +36,12 @@ public class Main
                                  }
 
                             catch (NumberFormatException nfe)
-                                {
-                                 System.err.print("Ошибка координат в строке № " +K);
-                                 System.err.println (" на элементе № " +i);
-                                }
+                            {
+                            ParseFlag++;
+                            }
                         }
 
-                  if(Coords.length == 6)
+                  if((Coords.length == 6)&&(ParseFlag==0))
                         {
                         Double Line1 = SizeLength1(Coords);
                         Double Line2 = SizeLength2(Coords);
@@ -56,7 +57,7 @@ public class Main
                                                 MaxCoords[i]= Coords[i];
                                             }
                                      }
-                                System.out.println(s1);
+                               //  System.out.println(s1);
                                 }
                             else
                                 {
@@ -65,9 +66,9 @@ public class Main
                         }
                   else
                          {
-                             System.out.println("Неверное число координат в строке " + K);
+                             System.out.println("Неверное число координат в строке/ошибка в записи координат на строке № " + K);
                          }
-                    System.out.println(Coords[0]);
+                   // System.out.println(Coords[0]);
                 }
             InBuf.close();
          }
@@ -77,7 +78,10 @@ public class Main
          }
 
         System.out.println( "Вот максимальная площадь " + MaxSquare);
-        for (int i =0; 
+        for (int i =0; i<6; i++)
+             {
+                 System.out.print(MaxCoords[i] );
+             }
     }
 
 
