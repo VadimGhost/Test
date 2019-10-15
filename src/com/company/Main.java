@@ -15,7 +15,7 @@ public class Main
         int[] MaxCoords = new int[6];
         File file = new File("C:\\Users\\Zver\\Desktop\\Input_file.txt");
         try
-        {
+         {
             FileInputStream StringFile = new FileInputStream(file);
             DataInputStream InBuf = new DataInputStream(StringFile);
             BufferedReader br = new BufferedReader(new InputStreamReader(InBuf));
@@ -28,54 +28,56 @@ public class Main
                   String[] CoordsStr = arr.split(" ");                                                            // разделение строки по пробелу
                   int[] Coords = new int[CoordsStr.length];
                   for (int i = 0; i < CoordsStr.length; i++)                                                            //парсим строку в числа
-                    {
-                        try {
-                             Coords[i] = Integer.parseInt(CoordsStr[i]);
-                            }
+                        {
+                            try {
+                                     Coords[i] = Integer.parseInt(CoordsStr[i]);
+                                 }
 
-                        catch (NumberFormatException nfe)
-                            {
-                             System.err.println("Ошибка координат в строке " +K);
-                            }
-
-                    }
+                            catch (NumberFormatException nfe)
+                                {
+                                 System.err.print("Ошибка координат в строке № " +K);
+                                 System.err.println (" на элементе № " +i);
+                                }
+                        }
 
                   if(Coords.length == 6)
-                     {
+                        {
                         Double Line1 = SizeLength1(Coords);
                         Double Line2 = SizeLength2(Coords);
                         Double Line3 = SizeLength3(Coords);
-                        if ((Line1.equals(Line2))||(Line2.equals(Line3))||(Line3.equals(Line1)))
-                            {
-                            double s1 = TriangleSqure(Line1, Line2, Line3);
-                                 if (s1>MaxSquare)
-                                 {
-                                     MaxSquare=s1;
-                                     for (int g=0;g<Coords.length;g++)
-                                        {
-                                            MaxCoords[g]= Coords[g];
-                                         }
+                            if ((Line1.equals(Line2))||(Line2.equals(Line3))||(Line3.equals(Line1)))
+                                {
+                                double s1 = TriangleSqure(Line1, Line2, Line3);
+                                     if (s1>MaxSquare)
+                                     {
+                                         MaxSquare=s1;
+                                         for (int i=0;i<Coords.length;i++)
+                                            {
+                                                MaxCoords[i]= Coords[i];
+                                            }
+                                     }
+                                System.out.println(s1);
+                                }
+                            else
+                                {
+                                System.out.println("Треугольник не является равноберенным на строке:"+K);
                                  }
-                            System.out.println(s1);
-                            }
-                        else
-                            {
-                            System.out.println("Треугольник не является равноберенным на строке:"+K);
-                             }
-                     }
+                        }
                   else
-                    {
-                        System.out.println(Coords[5]);
-
-                    }
-                    System.out.println(Coords[1]);
+                         {
+                             System.out.println("Неверное число координат в строке " + K);
+                         }
+                    System.out.println(Coords[0]);
                 }
             InBuf.close();
-        }
+         }
         catch (Exception e)
-        {
+         {
             System.err.println("Error");
-        }
+         }
+
+        System.out.println( "Вот максимальная площадь " + MaxSquare);
+        for (int i =0; 
     }
 
 
